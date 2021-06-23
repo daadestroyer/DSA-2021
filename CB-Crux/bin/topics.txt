@@ -1,0 +1,14 @@
+1. array							(DONE)
+2. string							(DONE)
+3. matrix							(DONE)
+4. searching and sorting			(DONE)
+5. recursion and backtracking		(DONE)
+6. stack and queue 					start from 20th june
+7. linkedlist						
+8. tree(generic tree,binary tree,segment tree,fenwick tree)
+9. Greedy
+10. Graph
+11. Trie (NOT IMPORTANT)
+12. Heap
+13. DP
+14. Bit Manipulation (NOT IMPORTANT)
