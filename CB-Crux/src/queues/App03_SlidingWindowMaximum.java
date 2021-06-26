@@ -3,6 +3,8 @@ package queues;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class App03_SlidingWindowMaximum {
 	// 2 3 1 5 7 1 2 5 4 3
