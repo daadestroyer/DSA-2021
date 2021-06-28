@@ -13,7 +13,6 @@ public class App10_histogram {
 		int stack_top_area = 0;
 		int max_area = 0;
 		int stack_top_element = 0;
-		
 		int i = 0;
 		for (; i < bars.length;) {
 			if (stack.isEmpty() || bars[stack.peek()] <= bars[i]) {
