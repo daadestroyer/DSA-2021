@@ -16,4 +16,12 @@
 /topics.txt
 /test.class
 /test1.class
+<<<<<<< HEAD
 /stack_queue_challanges/
+=======
+/topics.txt
+/labs/
+/stack_study/
+/queue_study/
+/priorty_queue/
+>>>>>>> beec7740a2cb87408eb66252dabb9968f82901ea
