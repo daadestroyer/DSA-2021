@@ -23,12 +23,10 @@ public class App10_histogram {
 				stack_top_element = stack.pop();
 
 				stack_top_area = bars[stack_top_element] * (stack.isEmpty() ? i : i - stack.peek() - 1);
-
 				if (stack_top_area > max_area) {
 					max_area = stack_top_area;
 				}
 			}
-
 		}
 
 		while (!stack.isEmpty()) {
