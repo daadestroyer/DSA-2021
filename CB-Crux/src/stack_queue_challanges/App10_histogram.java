@@ -27,7 +27,6 @@ public class App10_histogram {
 				}
 			}
 		}
-
 		while (!stack.isEmpty()) {
 			stack_top_element = stack.pop();
 
