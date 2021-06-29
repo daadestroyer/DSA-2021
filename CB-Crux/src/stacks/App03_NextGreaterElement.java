@@ -1,5 +1,6 @@
 package stacks;
 
+import java.util.Scanner;
 import java.util.Stack;
 
 /*
@@ -12,19 +13,25 @@ import java.util.Stack;
 */
 public class App03_NextGreaterElement {
 	public static void main(String[] args) {
-		int[] ar = { 2, 1, 3, 8, 6, 7, 5 };
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] ar = new int[n];
+		for (int i = 0; i < ar.length; i++) {
+			ar[i] = sc.nextInt();
+		}
 		Stack<Integer> stack = new Stack<Integer>();
 
 		for (int i = 0; i < ar.length; i++) {
 			while (!stack.isEmpty() && ar[i] > stack.peek()) {
 				int rv = stack.pop();
-				System.out.println(rv + "->" + ar[i]);
+				System.out.print(ar[i]+" ");
 
 			}
 			stack.push(ar[i]);
 		}
 		while (!stack.isEmpty()) {
-			System.out.println(stack.pop() + "->" + "-1");
+			stack.pop();
+			System.out.println("-1");
 		}
 	}
 }
