@@ -107,12 +107,12 @@ public class App01_implementLinkedList {
 		if (this.size == 0) {
 			System.out.println("Linked List is empty");
 		}
-		if (idx <= 0 || idx > this.size) {
+		if (idx < 0 || idx >= this.size) {
 			throw new Exception("invalid size");
 		}
 		Node temp = this.head;
 
-		for (int i = 1; i < idx; i++) {
+		for (int i = 0; i < idx; i++) {
 			temp = temp.next;
 		}
 		return temp;
@@ -178,8 +178,41 @@ public class App01_implementLinkedList {
 		return rv;
 	}
 
-	public void removeAt() {
+	public int removeAt(int idx) throws Exception {
+		if (this.size == 0) {
+			throw new Exception("Linked List is empty");
+		}
+		if (idx == 0) {
+			return this.removeFirst();
+		} else if (idx == this.size - 1) {
+			return this.removeLast();
+		} else {
+			Node nm1 = this.getNodeAt(idx - 1);
+			Node n = this.getNodeAt(idx);
+			Node np1 = this.getNodeAt(idx + 1);
 
+			nm1.next = np1;
+			this.size--;
+
+			return n.data;
+		}
+
+	}
+
+	public void reverseData() throws Exception {
+		int left = 0;
+		int right = this.size-1;
+
+		while (left < right) {
+			Node ln = this.getNodeAt(left);
+			Node rn = this.getNodeAt(right);
+
+			int temp = ln.data;
+			ln.data = rn.data;
+			rn.data = temp;
+			left++;
+			right--;
+		}
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -188,22 +221,27 @@ public class App01_implementLinkedList {
 		ll.addLast(20);
 		ll.addLast(30);
 		ll.addLast(40);
-		ll.addFirst(50);
-		ll.addFirst(60);
+		
 
+//		ll.display();
+//
+//		System.out.println("getFirst -> " + ll.getFirst());
+//		System.out.println("getLast  -> " + ll.getLast());
+//		System.out.println("getAt    -> " + ll.getAt(6));
+//		Node nodeAt = ll.getNodeAt(6);
+//		System.out.println("nodeAt   -> " + nodeAt.data);
+//
+//		ll.addAt(100, 3);
+//		ll.display();
+//		System.out.println("removeFirst -> " + ll.removeFirst());
+//		ll.display();
+//		System.out.println("removeLast -> " + ll.removeLast());
+//		ll.display();
+//		System.out.println("removeAt -> "+ll.removeAt(1));
 		ll.display();
-
-		System.out.println("getFirst -> " + ll.getFirst());
-		System.out.println("getLast  -> " + ll.getLast());
-		System.out.println("getAt    -> " + ll.getAt(6));
-		Node nodeAt = ll.getNodeAt(6);
-		System.out.println("nodeAt   -> " + nodeAt.data);
-
-		ll.addAt(100, 3);
-		ll.display();
-		System.out.println("removeFirst -> " + ll.removeFirst());
-		ll.display();
-		System.out.println("remveLast -> "+ll.removeLast());
+		
+		ll.reverseData();
+		
 		ll.display();
 	}
 }
