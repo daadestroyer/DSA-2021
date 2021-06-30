@@ -75,7 +75,7 @@ public class App01_implementLinkedList {
 		return this.head.data;
 
 	}
-	
+
 	// O(1)
 	public int getLast() throws Exception {
 		if (this.size == 0) {
@@ -86,11 +86,39 @@ public class App01_implementLinkedList {
 
 	}
 
-	public int getAt(int idx) {
-		
+	// O(1)
+	public int getAt(int idx) throws Exception {
+		if (this.size == 0) {
+			throw new Exception("Linked List is empty");
+		}
+		if (idx <= 0 || idx > this.size) {
+			throw new Exception("invalid size");
+		}
+		Node temp = this.head;
+
+		for (int i = 1; i < idx; i++) {
+			temp = temp.next;
+		}
+		return temp.data;
 	}
-	
-	public static void main(String[] args)throws Exception {
+
+	// O(1)
+	private Node getNodeAt(int idx) throws Exception {
+		if (this.size == 0) {
+			System.out.println("Linked List is empty");
+		}
+		if (idx <= 0 || idx > this.size) {
+			throw new Exception("invalid size");
+		}
+		Node temp = this.head;
+
+		for (int i = 1; i < idx; i++) {
+			temp = temp.next;
+		}
+		return temp;
+	}
+
+	public static void main(String[] args) throws Exception {
 		App01_implementLinkedList ll = new App01_implementLinkedList();
 		ll.addLast(10);
 		ll.addLast(20);
@@ -99,11 +127,13 @@ public class App01_implementLinkedList {
 		ll.addFirst(50);
 		ll.addFirst(60);
 
-		
 		ll.display();
-		
-		System.out.println("getFirst -> "+ll.getFirst());
-		System.out.println("getLast  -> "+ll.getLast());
+
+		System.out.println("getFirst -> " + ll.getFirst());
+		System.out.println("getLast  -> " + ll.getLast());
+		System.out.println("getAt    -> " + ll.getAt(6));
+		Node nodeAt = ll.getNodeAt(6);
+		System.out.println("nodeAt   -> "+nodeAt.data);
 
 	}
 }
