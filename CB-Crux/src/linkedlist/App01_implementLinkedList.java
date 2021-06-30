@@ -10,6 +10,7 @@ public class App01_implementLinkedList {
 	private Node tail;
 	private int size = 0;
 
+	// O(1)
 	public void display() {
 		System.out.println("------------------------");
 		Node temp = this.head;
@@ -21,6 +22,7 @@ public class App01_implementLinkedList {
 		System.out.println("------------------------");
 	}
 
+	// O(1)
 	public void addLast(int item) {
 
 		// create a node
@@ -43,6 +45,7 @@ public class App01_implementLinkedList {
 		}
 	}
 
+	// O(1)
 	public void addFirst(int data) {
 		Node nn = new Node();
 		nn.data = data;
@@ -63,6 +66,7 @@ public class App01_implementLinkedList {
 		}
 	}
 
+	// O(1)
 	public int getFirst() throws Exception {
 		if (this.size == 0) {
 			throw new Exception("Linked List is empty");
@@ -72,8 +76,20 @@ public class App01_implementLinkedList {
 
 	}
 	
-	
+	// O(1)
+	public int getLast() throws Exception {
+		if (this.size == 0) {
+			throw new Exception("Linked List is empty");
+		}
 
+		return this.tail.data;
+
+	}
+
+	public int getAt(int idx) {
+		
+	}
+	
 	public static void main(String[] args)throws Exception {
 		App01_implementLinkedList ll = new App01_implementLinkedList();
 		ll.addLast(10);
@@ -87,6 +103,7 @@ public class App01_implementLinkedList {
 		ll.display();
 		
 		System.out.println("getFirst -> "+ll.getFirst());
+		System.out.println("getLast  -> "+ll.getLast());
 
 	}
 }
