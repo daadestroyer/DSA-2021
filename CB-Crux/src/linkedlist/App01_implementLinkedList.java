@@ -201,7 +201,7 @@ public class App01_implementLinkedList {
 
 	public void reverseData() throws Exception {
 		int left = 0;
-		int right = this.size-1;
+		int right = this.size - 1;
 
 		while (left < right) {
 			Node ln = this.getNodeAt(left);
@@ -215,13 +215,27 @@ public class App01_implementLinkedList {
 		}
 	}
 
+	public int getMid() {
+		Node slow = this.head;
+		Node fast = this.head;
+
+		// fast.next != null comes when odd no of nodes are there
+		// fast.next.next != null comes when even no of nodes are theres
+
+		while (fast.next != null && fast.next.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		return slow.data;
+	}
+
 	public static void main(String[] args) throws Exception {
 		App01_implementLinkedList ll = new App01_implementLinkedList();
 		ll.addLast(10);
 		ll.addLast(20);
 		ll.addLast(30);
 		ll.addLast(40);
-		
+		ll.addLast(50);
 
 //		ll.display();
 //
@@ -238,10 +252,11 @@ public class App01_implementLinkedList {
 //		System.out.println("removeLast -> " + ll.removeLast());
 //		ll.display();
 //		System.out.println("removeAt -> "+ll.removeAt(1));
+//		ll.display();
+
+//		ll.reverseData();
+
 		ll.display();
-		
-		ll.reverseData();
-		
-		ll.display();
+		System.out.println(ll.getMid());
 	}
 }
