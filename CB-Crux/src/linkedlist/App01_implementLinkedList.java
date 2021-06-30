@@ -75,7 +75,7 @@ public class App01_implementLinkedList {
 		return this.head.data;
 
 	}
- 
+
 	// O(1)
 	public int getLast() throws Exception {
 		if (this.size == 0) {
@@ -144,34 +144,44 @@ public class App01_implementLinkedList {
 		}
 	}
 
-	
 	// O(1)
-	public int removeFirst()throws Exception {
-		if(this.size == 0) {
+	public int removeFirst() throws Exception {
+		if (this.size == 0) {
 			throw new Exception("Linked List is empty");
 		}
 		int rv = this.head.data;
-		if(this.size == 1) {
+		if (this.size == 1) {
 			this.head = this.tail = null;
 			this.size = 0;
-		}
-		else {
+		} else {
 			this.head = this.head.next;
 			this.size--;
 		}
 		return rv;
 	}
-	
-	public void removeLast()throws Exception {
-		if(this.size == 0) {
+
+	public int removeLast() throws Exception {
+		if (this.size == 0) {
 			throw new Exception("Linked List is empty");
 		}
+		int rv = this.tail.data;
+
+		if (this.size == 1) {
+			this.head = this.tail = null;
+			this.size = 0;
+		} else {
+			Node nm2 = this.getNodeAt(this.size - 2);
+			nm2.next = null;
+			this.tail = nm2;
+			this.size--;
+		}
+		return rv;
 	}
-	
+
 	public void removeAt() {
-		
+
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		App01_implementLinkedList ll = new App01_implementLinkedList();
 		ll.addLast(10);
@@ -191,7 +201,9 @@ public class App01_implementLinkedList {
 
 		ll.addAt(100, 3);
 		ll.display();
-		System.out.println("removeFirst -> "+ll.removeFirst());
+		System.out.println("removeFirst -> " + ll.removeFirst());
+		ll.display();
+		System.out.println("remveLast -> "+ll.removeLast());
 		ll.display();
 	}
 }
