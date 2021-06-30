@@ -119,7 +119,7 @@ public class App01_implementLinkedList {
 	}
 
 	// O(1)
-	private void addAt(int item, int idx) throws Exception {
+	public void addAt(int item, int idx) throws Exception {
 		if (idx <= 0 || idx > this.size) {
 			throw new Exception("Invalid Size");
 		}
@@ -229,6 +229,24 @@ public class App01_implementLinkedList {
 		return slow.data;
 	}
 
+	public int kthNodeFromEnd(int idx) throws Exception {
+		if (idx <= 0 || idx > this.size) {
+			throw new Exception("Invalid Size");
+		}
+
+		Node fast = this.head;
+		Node slow = this.head;
+		for (int i = 1; i <= idx; i++) {
+			fast = fast.next;
+		}
+
+		while (fast != null) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		return slow.data;
+	}
+
 	public static void main(String[] args) throws Exception {
 		App01_implementLinkedList ll = new App01_implementLinkedList();
 		ll.addLast(10);
@@ -257,6 +275,7 @@ public class App01_implementLinkedList {
 //		ll.reverseData();
 
 		ll.display();
-		System.out.println(ll.getMid());
+//		System.out.println(ll.getMid());
+		System.out.println(ll.kthNodeFromEnd(2));
 	}
 }
