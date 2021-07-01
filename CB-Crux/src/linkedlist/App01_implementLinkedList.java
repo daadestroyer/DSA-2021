@@ -1,5 +1,7 @@
 package linkedlist;
 
+
+
 public class App01_implementLinkedList {
 	private class Node {
 		int data;
@@ -14,6 +16,17 @@ public class App01_implementLinkedList {
 	public void display() {
 		System.out.println("------------------------");
 		Node temp = this.head;
+		while (temp != null) {
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
+		System.out.println("------------------------");
+	}
+
+	public void display(Node temp) {
+		System.out.println("------------------------");
+		temp = this.head;
 		while (temp != null) {
 			System.out.print(temp.data + " ");
 			temp = temp.next;
@@ -247,15 +260,45 @@ public class App01_implementLinkedList {
 		return slow.data;
 	}
 
+	public void oddEven() throws Exception {
+		App01_implementLinkedList even = new App01_implementLinkedList();
+		App01_implementLinkedList odd = new App01_implementLinkedList();
+
+		while (this.size > 0) {
+			int data = this.removeFirst();
+
+			if (data % 2 == 0) {
+				even.addLast(data);
+			} else {
+				odd.addLast(data);
+			}
+		}
+
+		if (odd.size > 0 && even.size > 0) {
+			this.head = odd.head;
+			odd.tail.next = even.head;
+			this.tail = even.tail;
+		} else if (even.size > 0) {
+			this.tail = even.tail;
+			this.head = even.head;
+		} else {
+			this.tail = odd.tail;
+			this.head = odd.head;
+		}
+
+		this.display(odd.head);
+
+	}
+
 	public static void main(String[] args) throws Exception {
 		App01_implementLinkedList ll = new App01_implementLinkedList();
 		ll.addLast(10);
 		ll.addLast(20);
-		ll.addLast(30);
+		ll.addLast(33);
 		ll.addLast(40);
-		ll.addLast(50);
+		ll.addLast(55);
 
-//		ll.display();
+		ll.display();
 //
 //		System.out.println("getFirst -> " + ll.getFirst());
 //		System.out.println("getLast  -> " + ll.getLast());
@@ -274,8 +317,12 @@ public class App01_implementLinkedList {
 
 //		ll.reverseData();
 
-		ll.display();
+//		ll.display();
 //		System.out.println(ll.getMid());
-		System.out.println(ll.kthNodeFromEnd(2));
+//		System.out.println(ll.kthNodeFromEnd(2));
+
+//		ll.oddEven();
+		
+
 	}
 }
