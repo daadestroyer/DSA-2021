@@ -20,8 +20,6 @@ public class App03_intersectionOfTwoArray {
 				aList.add(ar1[i]); 
 			}
 		}
-		
 		System.out.println(aList);
-
 	}
 }
