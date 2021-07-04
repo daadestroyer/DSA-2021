@@ -1,5 +1,7 @@
 package trees;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class App02_BinaryTree {
@@ -129,7 +131,7 @@ public class App02_BinaryTree {
 		this.postOrder(this.rootNode);
 		System.out.print("END");
 	}
-	
+
 	private void preOrder(Node rootNode) {
 		if (rootNode == null) {
 			return;
@@ -137,7 +139,6 @@ public class App02_BinaryTree {
 		System.out.print(rootNode.data + " ");
 		postOrder(rootNode.leftNode);
 		postOrder(rootNode.rightNode);
-		
 
 	}
 
@@ -145,22 +146,44 @@ public class App02_BinaryTree {
 		this.preOrder(this.rootNode);
 		System.out.print("END");
 	}
-	
+
 	private void inOrder(Node rootNode) {
 		if (rootNode == null) {
 			return;
 		}
-		
+
 		inOrder(rootNode.leftNode);
 		System.out.print(rootNode.data + " ");
 		inOrder(rootNode.rightNode);
-		
 
 	}
 
 	public void inOrder() {
 		this.inOrder(this.rootNode);
 		System.out.print("END");
+	}
+
+	private void levelOrder(Node rootNode) {
+		LinkedList<Node> ll = new LinkedList<Node>();
+		ll.add(this.rootNode);
+
+		while (!ll.isEmpty()) {
+			Node rvNode = ll.removeFirst();
+			System.out.print(rvNode.data+" ");
+			
+			if(rvNode.leftNode!=null) {
+				ll.addLast(rvNode.leftNode);
+			}
+			if(rvNode.rightNode!=null) {
+				ll.addLast(rvNode.rightNode);
+			}
+		}
+
+	}
+
+	public void levelOrder() {
+		this.levelOrder(this.rootNode);
+		System.out.print(" END");
 	}
 
 	public static void main(String[] args) {
@@ -178,5 +201,7 @@ public class App02_BinaryTree {
 		binaryTree.preOrder();
 		System.out.println("\nIn Order");
 		binaryTree.inOrder();
+		System.out.println("\nlevel order");
+		binaryTree.levelOrder();
 	}
 }
