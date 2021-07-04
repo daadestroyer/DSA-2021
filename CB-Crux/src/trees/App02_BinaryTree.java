@@ -229,6 +229,7 @@ public class App02_BinaryTree {
 		} else if (!this.isBSTMaxMin(rootNode.rightNode, rootNode.data, max)) {
 			return false;
 		}
+		return true;
 	}
 
 	public boolean isBSTMaxMin() {
@@ -256,10 +257,12 @@ public class App02_BinaryTree {
 		System.out.println("\n\nlevel order");
 		binaryTree.levelOrder();
 
-		System.out.println("\n\nIs BST");
-		// 50 true 25 true 12 false false true 37 false false true 75 true 62 false
-		// false true 87 false false
+		System.out.println("\n\nIs BST using inOrder");
+		// 50 true 25 true 12 false false true 37 false false true 75 true 62 false false true 87 false false
 		ArrayList<Integer> aList = new ArrayList<Integer>();
 		System.out.println(binaryTree.isBSTLevelOrder(aList));
+		
+		System.out.println("\nis BST using max-min");
+		System.out.println(binaryTree.isBSTMaxMin());
 	}
 }
