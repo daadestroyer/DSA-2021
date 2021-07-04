@@ -1,5 +1,6 @@
 package trees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -117,6 +118,7 @@ public class App02_BinaryTree {
 		return this.height(this.rootNode);
 	}
 
+	// LRN
 	private void postOrder(Node rootNode) {
 		if (rootNode == null) {
 			return;
@@ -132,6 +134,7 @@ public class App02_BinaryTree {
 		System.out.print("END");
 	}
 
+	// NLR
 	private void preOrder(Node rootNode) {
 		if (rootNode == null) {
 			return;
@@ -147,6 +150,7 @@ public class App02_BinaryTree {
 		System.out.print("END");
 	}
 
+	// LNR
 	private void inOrder(Node rootNode) {
 		if (rootNode == null) {
 			return;
@@ -169,12 +173,12 @@ public class App02_BinaryTree {
 
 		while (!ll.isEmpty()) {
 			Node rvNode = ll.removeFirst();
-			System.out.print(rvNode.data+" ");
-			
-			if(rvNode.leftNode!=null) {
+			System.out.print(rvNode.data + " ");
+
+			if (rvNode.leftNode != null) {
 				ll.addLast(rvNode.leftNode);
 			}
-			if(rvNode.rightNode!=null) {
+			if (rvNode.rightNode != null) {
 				ll.addLast(rvNode.rightNode);
 			}
 		}
@@ -186,6 +190,51 @@ public class App02_BinaryTree {
 		System.out.print(" END");
 	}
 
+	private ArrayList<Integer> isBSTLevelOrder(Node rootNode, ArrayList<Integer> aList) {
+		if (rootNode == null) {
+			return null;
+		}
+		// perform inorder traversal
+
+		isBSTLevelOrder(rootNode.leftNode, aList);
+		aList.add(rootNode.data);
+		isBSTLevelOrder(rootNode.rightNode, aList);
+
+		return aList;
+	}
+
+	public boolean isBSTLevelOrder(ArrayList<Integer> aList) {
+		ArrayList<Integer> bst = this.isBSTLevelOrder(this.rootNode, aList);
+		System.out.println(bst);
+		for (int i = 0; i < aList.size() - 1; i++) {
+			if (aList.get(i) > aList.get(i + 1)) {
+				return false;
+			}
+		}
+		return true;
+
+	}
+
+	private boolean isBSTMaxMin(Node rootNode, int min, int max) {
+
+		// basecase
+		if (rootNode == null) {
+			return true;
+		}
+
+		if (rootNode.data > max || rootNode.data < min) {
+			return false;
+		} else if (!this.isBSTMaxMin(rootNode.leftNode, min, rootNode.data)) {
+			return false;
+		} else if (!this.isBSTMaxMin(rootNode.rightNode, rootNode.data, max)) {
+			return false;
+		}
+	}
+
+	public boolean isBSTMaxMin() {
+		return this.isBSTMaxMin(rootNode, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+
 	public static void main(String[] args) {
 		App02_BinaryTree binaryTree = new App02_BinaryTree();
 		System.out.println();
@@ -195,13 +244,22 @@ public class App02_BinaryTree {
 
 		System.out.println();
 		System.out.println("height = " + binaryTree.height());
+
+		System.out.println();
 		System.out.println("Post Order");
 		binaryTree.postOrder();
-		System.out.println("\nPre Order");
+
+		System.out.println("\n\nPre Order");
 		binaryTree.preOrder();
-		System.out.println("\nIn Order");
+		System.out.println("\n\nIn Order");
 		binaryTree.inOrder();
-		System.out.println("\nlevel order");
+		System.out.println("\n\nlevel order");
 		binaryTree.levelOrder();
+
+		System.out.println("\n\nIs BST");
+		// 50 true 25 true 12 false false true 37 false false true 75 true 62 false
+		// false true 87 false false
+		ArrayList<Integer> aList = new ArrayList<Integer>();
+		System.out.println(binaryTree.isBSTLevelOrder(aList));
 	}
 }
