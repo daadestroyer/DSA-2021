@@ -229,12 +229,34 @@ public class App02_BinaryTree {
 		} else if (!this.isBSTMaxMin(rootNode.rightNode, rootNode.data, max)) {
 			return false;
 		}
-		return true;
+		return true; 
 	}
 
 	public boolean isBSTMaxMin() {
 		return this.isBSTMaxMin(rootNode, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
+	
+	private int diameter(Node rootNode) {
+		
+		if(rootNode == null) {
+			return 0;
+		}
+		// when diameter passes through the root
+		int case1 = this.height(rootNode.leftNode)+this.height(rootNode.rightNode)+2;
+	
+		// calculate max distance b/w two node on left side of tree
+		int case2 = this.diameter(rootNode.leftNode);
+				
+		// calculate max distance b/w two node on right side of tree
+		int case3 = this.diameter(rootNode.rightNode);
+		
+		return Math.max(case1, Math.max(case2, case3));	
+	}
+
+	public int diameter() {
+		return  this.diameter(this.rootNode);
+	}
+	
 
 	public static void main(String[] args) {
 		App02_BinaryTree binaryTree = new App02_BinaryTree();
@@ -264,5 +286,8 @@ public class App02_BinaryTree {
 		
 		System.out.println("\nis BST using max-min");
 		System.out.println(binaryTree.isBSTMaxMin());
+		
+		System.out.println("\nDiameter of tree");
+		System.out.println(binaryTree.diameter());
 	}
 }
