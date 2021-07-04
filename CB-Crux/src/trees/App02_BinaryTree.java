@@ -229,34 +229,51 @@ public class App02_BinaryTree {
 		} else if (!this.isBSTMaxMin(rootNode.rightNode, rootNode.data, max)) {
 			return false;
 		}
-		return true; 
+		return true;
 	}
 
 	public boolean isBSTMaxMin() {
 		return this.isBSTMaxMin(rootNode, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
-	
+
 	private int diameter(Node rootNode) {
-		
-		if(rootNode == null) {
+
+		if (rootNode == null) {
 			return 0;
 		}
 		// when diameter passes through the root
-		int case1 = this.height(rootNode.leftNode)+this.height(rootNode.rightNode)+2;
-	
+		int case1 = this.height(rootNode.leftNode) + this.height(rootNode.rightNode) + 2;
+
 		// calculate max distance b/w two node on left side of tree
 		int case2 = this.diameter(rootNode.leftNode);
-				
+
 		// calculate max distance b/w two node on right side of tree
 		int case3 = this.diameter(rootNode.rightNode);
-		
-		return Math.max(case1, Math.max(case2, case3));	
+
+		return Math.max(case1, Math.max(case2, case3));
 	}
 
 	public int diameter() {
-		return  this.diameter(this.rootNode);
+		return this.diameter(this.rootNode);
 	}
-	
+
+	private int leafSum(Node rootNode) {
+		if (rootNode == null) {
+			return 0;
+		}
+		if (rootNode.leftNode == null && rootNode.rightNode == null) {
+			return rootNode.data;
+		}
+
+		int rsum = this.leafSum(rootNode.leftNode);
+		int lsum = this.leafSum(rootNode.rightNode);
+
+		return rsum + lsum;
+	}
+
+	public int leafSum() {
+		return this.leafSum(this.rootNode);
+	}
 
 	public static void main(String[] args) {
 		App02_BinaryTree binaryTree = new App02_BinaryTree();
@@ -280,14 +297,18 @@ public class App02_BinaryTree {
 		binaryTree.levelOrder();
 
 		System.out.println("\n\nIs BST using inOrder");
-		// 50 true 25 true 12 false false true 37 false false true 75 true 62 false false true 87 false false
+		// 50 true 25 true 12 false false true 37 false false true 75 true 62 false
+		// false true 87 false false
 		ArrayList<Integer> aList = new ArrayList<Integer>();
 		System.out.println(binaryTree.isBSTLevelOrder(aList));
-		
+
 		System.out.println("\nis BST using max-min");
 		System.out.println(binaryTree.isBSTMaxMin());
-		
+
 		System.out.println("\nDiameter of tree");
 		System.out.println(binaryTree.diameter());
+		
+		System.out.println("\nSum of leaf node");
+		System.out.println(binaryTree.leafSum());
 	}
 }
