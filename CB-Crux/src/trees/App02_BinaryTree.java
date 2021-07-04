@@ -145,6 +145,23 @@ public class App02_BinaryTree {
 		this.preOrder(this.rootNode);
 		System.out.print("END");
 	}
+	
+	private void inOrder(Node rootNode) {
+		if (rootNode == null) {
+			return;
+		}
+		
+		inOrder(rootNode.leftNode);
+		System.out.print(rootNode.data + " ");
+		inOrder(rootNode.rightNode);
+		
+
+	}
+
+	public void inOrder() {
+		this.inOrder(this.rootNode);
+		System.out.print("END");
+	}
 
 	public static void main(String[] args) {
 		App02_BinaryTree binaryTree = new App02_BinaryTree();
@@ -155,9 +172,11 @@ public class App02_BinaryTree {
 
 		System.out.println();
 		System.out.println("height = " + binaryTree.height());
+		System.out.println("Post Order");
 		binaryTree.postOrder();
-		System.out.println();
+		System.out.println("\nPre Order");
 		binaryTree.preOrder();
-
+		System.out.println("\nIn Order");
+		binaryTree.inOrder();
 	}
 }
