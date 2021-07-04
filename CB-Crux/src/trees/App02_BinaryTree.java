@@ -156,6 +156,7 @@ public class App02_BinaryTree {
 		System.out.println();
 		System.out.println("height = " + binaryTree.height());
 		binaryTree.postOrder();
+		System.out.println();
 		binaryTree.preOrder();
 
 	}
