@@ -127,6 +127,20 @@ public class App03_BST {
 		int item = scanner.nextInt();
 		return this.findInBst(item, this.rootNode);
 	}
+	
+	private int maxInBst(Node rootNode) {
+		
+		if(rootNode.rightNode == null){
+			return rootNode.data;
+			
+		}
+		// always check on right side no need to check in left 
+		return this.maxInBst(rootNode.rightNode);
+	}
+	
+	public int maxInBst() {
+		return this.maxInBst(this.rootNode);
+	}
 
 	public static void main(String[] args) {
 		App03_BST bst = new App03_BST(new int[] { 10, 20, 30, 40, 50, 60, 70 });
@@ -134,5 +148,8 @@ public class App03_BST {
 		System.out.println(bst.findInBst());
 		System.out.println();
 		bst.addInBst();
+		
+		System.out.println();
+		System.out.println("MAX in bst "+bst.maxInBst());
 	}
 }
