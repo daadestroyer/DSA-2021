@@ -90,6 +90,37 @@ public class App03_BST {
 
 	}
 
+	private void addInBst(Node rootNode, int data) {
+		
+		if (data > rootNode.data) {
+			if (rootNode.rightNode == null) {
+				// agar root node ka right null hai ti attack kardo
+				Node nn = new Node();
+				nn.data = data;
+				rootNode.rightNode = nn;
+			} else {
+				// agar right me abhi bhe nodes baki hai to right ki call fir lagao
+				this.addInBst(rootNode.rightNode, data);
+			}
+		} else {
+			if (rootNode.leftNode == null) {
+				Node nn = new Node();
+				nn.data = data;
+				rootNode.leftNode = nn;
+			} else {
+				this.addInBst(rootNode.leftNode, data);
+			}
+		}
+	}
+
+	public void addInBst() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter data to add in tree");
+		int data = scanner.nextInt();
+		this.addInBst(this.rootNode, data);
+		this.display();
+	}
+
 	public boolean findInBst() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter item to search in BST");
@@ -101,5 +132,7 @@ public class App03_BST {
 		App03_BST bst = new App03_BST(new int[] { 10, 20, 30, 40, 50, 60, 70 });
 		bst.display();
 		System.out.println(bst.findInBst());
+		System.out.println();
+		bst.addInBst();
 	}
 }
